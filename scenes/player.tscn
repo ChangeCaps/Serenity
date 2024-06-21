@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0dlm4fq1k4lu"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_wk27x"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ethvk"]
+radius = 0.4
+
+[node name="Player" type="CharacterBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+floor_block_on_wall = false
+floor_snap_length = 0.2
+script = ExtResource("1_wk27x")
+walk_speed = 10.0
+walk_acceleration = 80.0
+walk_friction = 5.0
+air_speed = 5.0
+air_acceleration = 60.0
+slide_speed = 4.0
+slide_acceleration = 40.0
+slide_friction = 0.2
+slide_min_speed = 8.0
+jump_impulse = 4.0
+jump_buffer_time = 0.1
+view_sensitive = 0.5
+view_limit = 85.0
+headbob_frequency = 2.0
+headbob_amplitude = 0.08
+fov = 70.0
+fov_factor = 1.0
+fov_decay = 2.0
+slide_height = 1.0
+slide_head_tilt = 10.0
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ethvk")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera" type="Camera3D" parent="Head"]
+fov = 70.0

@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://in7ugn07bch5"]
+
+[ext_resource type="PackedScene" uid="uid://b0dlm4fq1k4lu" path="res://scenes/player.tscn" id="1_62gn8"]
+[ext_resource type="Shader" path="res://shaders/checkerboard.gdshader" id="1_er4d8"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vnd23"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_5d68a"]
+sky_material = SubResource("ProceduralSkyMaterial_vnd23")
+
+[sub_resource type="Environment" id="Environment_8etu1"]
+background_mode = 2
+sky = SubResource("Sky_5d68a")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xjk2c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lw330"]
+render_priority = 0
+shader = ExtResource("1_er4d8")
+shader_parameter/scale = 500.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_of4nh"]
+material = SubResource("ShaderMaterial_lw330")
+size = Vector2(1000, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jlea"]
+albedo_color = Color(1, 0.12, 0.12, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ormrk"]
+material = SubResource("StandardMaterial3D_1jlea")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4h5dr"]
+
+[node name="Level" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8etu1")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_xjk2c")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_of4nh")
+
+[node name="Player" parent="." instance=ExtResource("1_62gn8")]
+slide_head_tilt = null
+
+[node name="Slope" type="StaticBody3D" parent="."]
+transform = Transform3D(9.40338, 0.236769, 0, 7.59109, -0.293295, 0, 0, 0, 92.4915, 22.6463, 2.47738, 1.64348)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Slope"]
+transform = Transform3D(1, 0, 0, -9.53674e-07, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_ormrk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Slope"]
+shape = SubResource("BoxShape3D_4h5dr")
+
+[node name="Slope2" type="StaticBody3D" parent="."]
+transform = Transform3D(-8.63499e-07, 7.13224e-09, -92.4915, 7.59109, -0.293295, 0, 9.40338, 0.236769, -4.04293e-06, -15.2124, 2.47738, 39.9275)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Slope2"]
+transform = Transform3D(1, 0, 0, -9.53674e-07, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_ormrk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Slope2"]
+shape = SubResource("BoxShape3D_4h5dr")
+
+[node name="Slope4" type="StaticBody3D" parent="."]
+transform = Transform3D(-8.63499e-07, 7.13224e-09, -92.4915, 7.59109, -0.293295, 0, 9.40338, 0.236769, -4.04293e-06, -88.0395, 2.47738, 70.8593)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Slope4"]
+transform = Transform3D(1, 0, 0, -9.53674e-07, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_ormrk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Slope4"]
+shape = SubResource("BoxShape3D_4h5dr")
+
+[node name="Slope3" type="StaticBody3D" parent="."]
+transform = Transform3D(1.9118e-06, 4.82589e-09, 92.4915, 7.59109, -0.293295, 8.5436e-13, -9.40338, -0.236769, 1.21288e-05, -86.6215, 2.47738, 56.6823)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Slope3"]
+transform = Transform3D(1, 0, 0, -9.53674e-07, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_ormrk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Slope3"]
+shape = SubResource("BoxShape3D_4h5dr")
