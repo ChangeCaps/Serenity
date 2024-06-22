@@ -53,6 +53,10 @@ shoot={
 ]
 }
 
+[physics]
+
+3d/default_gravity=12.0
+
 [rendering]
 
 anti_aliasing/quality/msaa_3d=1
